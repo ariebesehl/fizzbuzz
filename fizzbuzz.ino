@@ -2,7 +2,7 @@
 #define EINE_ZAHL 255
 static const unsigned char* gConst[3] = {(const unsigned char*)"Fizzbuzz!\n", (const unsigned char*)"Fizz!\n", (const unsigned char*)"Buzz!\n"};
 static unsigned char gBuffer[5] = {'\0', '\0', '\0', '\n', '\0'};
-void gSerialInit(void) {UBRR0H = 0x0; UBRR0L = 0x0; UCSR0A = 0x0; UCSR0B = 0x8; UCSR0C = 0x6;} // 1M baud-rate, RX only 
+void gSerialInit(void) {UBRR0H = 0x0; UBRR0L = 0x0; UCSR0A = 0x0; UCSR0B = 0x8; UCSR0C = 0x6;} // 1M baud, AVR is TX only
 void gSerialPrint(const unsigned char* iText) {unsigned char lChar; while ((lChar = *(iText)++)) {while (!(UCSR0A & 0x20)); UDR0 = lChar;}}
 int main(void) {
   gSerialInit();
